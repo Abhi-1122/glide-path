@@ -61,7 +61,7 @@ const S = {
   view: null, host: null, state: null, client: null,
   lostHost: false, stale: false, tmp: null, errMsg: '',
   sel: null, adj: 0, pick: new Set(), // selected die, focus adjustment, reroll picks
-  tutorial: store.get('gp-tutorial') === '1', // personal toggle, off by default
+  tutorial: false, // personal toggle, off on every load
   info: null, // tutorial: system the player tapped for an explanation
   sheet: null, // null | 'menu' | 'rules'
   overHidden: false,
@@ -204,7 +204,7 @@ const errorScreen = () => h('section', { class: 'card center mid' }, h('p', {}, 
 function tutorToggle() {
   return h('button', {
     class: 'btn sm tutor ' + (S.tutorial ? 'on' : ''), 'aria-pressed': String(S.tutorial),
-    onclick: () => { S.tutorial = !S.tutorial; S.info = null; store.set('gp-tutorial', S.tutorial ? '1' : '0'); render(); },
+    onclick: () => { S.tutorial = !S.tutorial; S.info = null; render(); },
   }, S.tutorial ? 'Tutor on' : 'Tutor off');
 }
 const menuBtn = () => h('button', { class: 'btn sm icon', 'aria-label': 'Menu', onclick: () => { S.sheet = 'menu'; render(); } }, '☰');
